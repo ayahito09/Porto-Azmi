@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Setup initial dark theme if preferred -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <title>Azmi Sirojuddin — UI/UX Designer & Graphic Designer</title>
+  <meta name="description" content="Portfolio of Azmi Sirojuddin — UI/UX Designer & Graphic Designer based in Bandung, Indonesia. 7+ years in Graphic Design, 4+ years in UI/UX Design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Loader Overlay -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader-content">
+      <div id="loader-percent" class="loader-percent">0%</div>
+      <div class="loader-bar-container">
+        <div id="loader-bar" class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        Azmi
+        <svg class="logo-sparkle" width="8" height="8" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2 L12 22 M2 12 L22 12 M5 5 L19 19 M19 5 L5 19" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active" data-section="home">Home</a>
+        <a href="#about" class="nav-link" data-section="about">About</a>
+        <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+        <a href="#qa" class="nav-link" data-section="qa">Q&A</a>
+        <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+      </div>
+      <div class="nav-right">
+        <button class="nav-theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <a href="#contact" class="nav-cta btn btn-primary btn-sm">Let's Talk</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#home" class="mobile-link">Home</a>
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#experience" class="mobile-link">Experience</a>
+      <a href="#qa" class="mobile-link">Q&A</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+  </div>
+
+  <!-- ===== SECTION DOTS (fixed side nav) ===== -->
+  <div class="section-dots" id="sectionDots">
+    <button class="dot active" data-index="0" aria-label="Home">
+      <span class="dot-label">Home</span>
+    </button>
+    <button class="dot" data-index="1" aria-label="About">
+      <span class="dot-label">About</span>
+    </button>
+    <button class="dot" data-index="2" aria-label="Experience">
+      <span class="dot-label">Experience</span>
+    </button>
+    <button class="dot" data-index="3" aria-label="Q&A">
+      <span class="dot-label">Q&A</span>
+    </button>
+    <button class="dot" data-index="4" aria-label="Contact">
+      <span class="dot-label">Contact</span>
+    </button>
+  </div>
+
+  <!-- ===== MAIN CONTENT (GSAP Pinned Panels) ===== -->
+  <main id="main">
+    <div class="panels-wrapper">
+    <section class="panel panel-hero" id="home">
+      <canvas id="globeCanvas"></canvas>
+
+      <!-- Hero doodle decorations -->
+      <div class="hero-doodles" aria-hidden="true">
+        <svg class="hd hd-star-1" width="40" height="40" viewBox="0 0 48 48" fill="none" data-parallax-speed="0.25">
+          <path d="M24 4 L27 19 L42 19 L30 28 L34 43 L24 34 L14 43 L18 28 L6 19 L21 19Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        </svg>
+        <svg class="hd hd-circle-1" width="60" height="60" viewBox="0 0 100 100" fill="none" data-parallax-speed="-0.15">
+          <path d="M50 10 C78 8,94 28,92 52 C90 76,74 94,50 92 C26 90,8 74,10 50 C12 26,26 12,50 10Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <svg class="hd hd-sparkle-1" width="20" height="20" viewBox="0 0 24 24" fill="none" data-parallax-speed="0.35">
+          <path d="M12 2L12 22M2 12L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="hd hd-squiggle-1" width="120" height="20" viewBox="0 0 120 20" fill="none" data-parallax-speed="-0.3">
+          <path d="M2 10Q15 2,30 10Q45 18,60 10Q75 2,90 10Q105 18,118 10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="hd hd-dots-1" width="50" height="50" viewBox="0 0 50 50" fill="none" data-parallax-speed="0.12">
+          <circle cx="8" cy="8" r="2.5" fill="currentColor"/><circle cx="25" cy="6" r="2" fill="#E5E5E5"/><circle cx="42" cy="10" r="3" fill="currentColor"/>
+          <circle cx="10" cy="30" r="2" fill="#E5E5E5"/><circle cx="38" cy="35" r="2.5" fill="currentColor"/>
+          <circle cx="6" cy="46" r="2" fill="#E5E5E5"/><circle cx="44" cy="44" r="2.5" fill="currentColor"/>
+        </svg>
+        <svg class="hd hd-cross-1" width="20" height="20" viewBox="0 0 24 24" fill="none" data-parallax-speed="0.2">
+          <path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="container hero-wrap">
+        <div class="hero-content">
+          <div class="hero-label reveal-up">
+            <span class="badge">UI/UX Designer & Graphic Designer</span>
+          </div>
+          <h1 class="hero-heading reveal-up" data-delay="100">
+            Hi, I'm<br>
+            <span class="hero-name">
+              Azmi Sirojuddin
+              <svg class="doodle-underline" viewBox="0 0 300 16" fill="none" preserveAspectRatio="none">
+                <path d="M2 10C30 2,60 16,90 8C120 0,150 14,180 8C210 2,240 16,270 8C285 4,295 10,298 8" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </h1>
+          <p class="hero-desc reveal-up" data-delay="200">
+            Turning ideas into engaging visual experiences — combining creativity, functionality, and storytelling across <strong>7+ years</strong> of design work.
+          </p>
+        </div>
+      </div>
+
+      <!-- Scroll down indicator -->
+      <div class="scroll-hint">
+        <div class="scroll-mouse"><div class="scroll-dot-anim"></div></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ========================== -->
+    <!-- PANEL 2: ABOUT             -->
+    <!-- ========================== -->
+    <section class="panel panel-light" id="about">
+      <div class="panel-rounded-top" aria-hidden="true"></div>
+      <div class="container panel-inner">
+        <div class="section-header">
+          <span class="section-label reveal-up">ABOUT ME</span>
+          <h2 class="section-title reveal-up" data-delay="80">
+            Crafting Digital Experiences
+            <svg class="doodle-underline-sm" viewBox="0 0 280 12" fill="none"><path d="M2 7C30 2,60 12,90 7C120 2,150 12,180 7C210 2,240 12,260 7C270 4,276 8,278 6" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+          </h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="body-lg reveal-up">Creative visuals have always been at the heart of what I do. With <strong>7+ years</strong> of experience in Graphic Design and <strong>4+ years</strong> in UI/UX Design, I am passionate about turning ideas into engaging visual experiences.</p>
+            <p class="body-md reveal-up" data-delay="80">From designing publications and illustrations to crafting user-friendly mobile and web applications, I enjoy creating work that not only looks great but also delivers value and meaningful experiences.</p>
+            <div class="skills-wrap reveal-up" data-delay="160">
+              <h4 class="skills-label">Core Skills</h4>
+              <div class="skills-list">
+                <span class="badge">UI Design</span>
+                <span class="badge">UX Design</span>
+                <span class="badge">Graphic Design</span>
+                <span class="badge">Illustration</span>
+                <span class="badge">User Research</span>
+                <span class="badge">Wireframing</span>
+                <span class="badge">Prototyping</span>
+                <span class="badge">Photography</span>
+                <span class="badge">Visual Storytelling</span>
+                <span class="badge">Design Systems</span>
+              </div>
+            </div>
+            
+            <div class="about-links reveal-up" data-delay="200" style="margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap;">
+              <a href="https://www.linkedin.com/in/azmi-sirojuddin-3ab78a1b9/" target="_blank" class="btn btn-outline btn-sm">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                LinkedIn
+              </a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmisirojuddin3@gmail.com" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Email Me
+              </a>
+            </div>
+          </div>
+          <div class="about-visual reveal-up" data-delay="120">
+            <div class="about-card" data-tilt>
+              <!-- Shine overlay -->
+              <div class="card-shine" aria-hidden="true"></div>
+              <div class="photo-frame">
+                <img src="azmi-photo.jpg" alt="Azmi Sirojuddin — UI/UX Designer" class="about-photo" loading="lazy">
+              </div>
+              <!-- Doodle accents around card -->
+              <svg class="photo-doodle photo-doodle-tl" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M4 28L4 4L28 4" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg class="photo-doodle photo-doodle-br" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M28 4L28 28L4 28" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg class="photo-doodle photo-doodle-star" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2L13.5 9L21 9L15 14L17 21L12 17L7 21L9 14L3 9L10.5 9Z" stroke="#111" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+              </svg>
+              <svg class="photo-doodle photo-doodle-circle" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7" stroke="#111" stroke-width="1.5" fill="none"/>
+              </svg>
+              <svg class="photo-doodle photo-doodle-dots" width="22" height="8" viewBox="0 0 22 8" fill="none" aria-hidden="true">
+                <circle cx="4" cy="4" r="2" fill="#111" opacity="0.3"/>
+                <circle cx="11" cy="4" r="2" fill="#111" opacity="0.2"/>
+                <circle cx="18" cy="4" r="2" fill="#111" opacity="0.1"/>
+              </svg>
+              <div class="photo-caption">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                <span>Bandung, Indonesia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Section doodle accents: About -->
+      <!-- Pencil -->
+      <svg class="section-doodle sd-about-pencil" width="60" height="120" viewBox="0 0 60 120" fill="none" aria-hidden="true" data-parallax-speed="-0.2">
+        <path d="M30 10L38 100L30 115L22 100Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        <line x1="22" y1="100" x2="38" y2="100" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="25" y1="90" x2="35" y2="90" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2"/>
+      </svg>
+      <!-- Bezier curve / pen tool -->
+      <svg class="section-doodle sd-about-bezier" width="100" height="80" viewBox="0 0 100 80" fill="none" aria-hidden="true" data-parallax-speed="0.18">
+        <path d="M10 60Q30 10,50 40Q70 70,90 20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="60" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="90" cy="20" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <line x1="10" y1="60" x2="30" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="90" y1="20" x2="70" y2="70" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+      </svg>
+      <!-- Color palette circle -->
+      <svg class="section-doodle sd-about-palette" width="70" height="70" viewBox="0 0 70 70" fill="none" aria-hidden="true" data-parallax-speed="-0.12">
+        <circle cx="35" cy="35" r="28" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="35" cy="12" r="5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="20" cy="28" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="50" cy="28" r="4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="26" cy="50" r="3.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+      <!-- Sparkle small -->
+      <svg class="section-doodle sd-about-sparkle" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true" data-parallax-speed="0.25">
+        <path d="M15 2L17 12L27 15L17 18L15 28L13 18L3 15L13 12Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      </svg>
+      <!-- Cursor arrow -->
+      <svg class="section-doodle sd-about-cursor" width="36" height="50" viewBox="0 0 36 50" fill="none" aria-hidden="true" data-parallax-speed="0.15">
+        <path d="M6 4L6 38L14 30L22 44L26 42L18 28L28 26Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      </svg>
+      <!-- Squiggle wave -->
+      <svg class="section-doodle sd-about-wave" width="140" height="20" viewBox="0 0 140 20" fill="none" aria-hidden="true" data-parallax-speed="-0.1">
+        <path d="M2 10Q17 2,35 10Q53 18,70 10Q88 2,105 10Q123 18,138 10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </section>
+
+    <!-- ========================== -->
+    <!-- PANEL 3: EXPERIENCE        -->
+    <!-- ========================== -->
+    <section class="panel panel-white" id="experience">
+      <div class="panel-rounded-top" aria-hidden="true"></div>
+      <div class="container panel-inner">
+        <div class="section-header">
+          <span class="section-label reveal-up">EXPERIENCE</span>
+          <h2 class="section-title reveal-up" data-delay="80">
+            Where I've Worked
+            <svg class="doodle-underline-sm" viewBox="0 0 200 12" fill="none"><path d="M2 7C20 2,40 12,60 7C80 2,100 12,120 7C140 2,160 12,180 7C190 4,196 8,198 6" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+          </h2>
+        </div>
+        <div class="exp-grid">
+          <!-- Card 1: UI/UX Designer -->
+          <div class="exp-card reveal-up" data-tilt>
+            <div class="exp-card-top">
+              <span class="badge">Apr 2022 — Present</span>
+              <span class="exp-dur">4y 3m</span>
+            </div>
+            <h3 class="exp-role">UI/UX Designer</h3>
+            <p class="exp-company">PT Rahadhyan Integrasi Nusantara</p>
+            <ul class="exp-bullets">
+              <li>Designed intuitive interfaces for <strong>3 mobile & web apps</strong> focusing on usability and accessibility.</li>
+              <li>Created wireframes, user flows, mockups, and interactive prototypes.</li>
+              <li>Conducted user research and translated needs into effective solutions.</li>
+            </ul>
+            <svg class="exp-doodle" width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M24 4L27 19L42 19L30 28L34 43L24 34L14 43L18 28L6 19L21 19Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <!-- Card 2: Illustration Designer -->
+          <div class="exp-card reveal-up" data-delay="100" data-tilt>
+            <div class="exp-card-top">
+              <span class="badge">Apr 2022 — Present</span>
+              <span class="exp-dur">4y 3m</span>
+            </div>
+            <h3 class="exp-role">Illustration Designer</h3>
+            <p class="exp-company">PT Rahadhyan Integrasi Nusantara</p>
+            <ul class="exp-bullets">
+              <li>Designed custom illustrations to enhance visual communication & engagement.</li>
+              <li>Developed assets aligned with product branding and design systems.</li>
+              <li>Integrated illustrations into user journeys for accessible information.</li>
+            </ul>
+            <svg class="exp-doodle" width="50" height="50" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+              <path d="M50 10C78 8,94 28,92 52C90 76,74 94,50 92C26 90,8 74,10 50C12 26,26 12,50 10Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <!-- Card 3: Yearbook Creative -->
+          <div class="exp-card reveal-up" data-delay="200" data-tilt>
+            <div class="exp-card-top">
+              <span class="badge">Aug 2021 — Apr 2022</span>
+              <span class="exp-dur">9 months</span>
+            </div>
+            <h3 class="exp-role">Yearbook Creative Lead</h3>
+            <p class="exp-company">Yearbook Organizer</p>
+            <ul class="exp-bullets">
+              <li>Managed photography projects across multiple cities in Indonesia.</li>
+              <li>Designed <strong>50+ yearbook layouts</strong> across diverse creative themes.</li>
+              <li>Combined visual storytelling, typography, and photography into publications.</li>
+            </ul>
+            <svg class="exp-doodle" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+              <path d="M18 3L33 18L18 33L3 18Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <!-- Education -->
+        <div class="edu-bar reveal-up" data-delay="300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3L2 9L12 15L22 9Z" stroke="#111" stroke-width="2" fill="none" stroke-linejoin="round"/>
+            <path d="M6 11.5L6 17Q12 21,18 17L18 11.5" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="edu-info">
+            <strong>Universitas Teknologi Bandung</strong>
+            <span>Bachelor's Degree — Design and Visual Communications <em>(2022 – 2025)</em></span>
+          </div>
+        </div>
+      </div>
+      <!-- Section doodle accents: Experience -->
+      <!-- Grid/layout doodle -->
+      <svg class="section-doodle sd-exp-grid" width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true" data-parallax-speed="0.18">
+        <rect x="5" y="5" width="30" height="22" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <rect x="45" y="5" width="30" height="22" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <rect x="5" y="37" width="70" height="16" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <rect x="5" y="63" width="30" height="12" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <rect x="45" y="63" width="30" height="12" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+      <!-- Layers stack -->
+      <svg class="section-doodle sd-exp-layers" width="70" height="60" viewBox="0 0 70 60" fill="none" aria-hidden="true" data-parallax-speed="-0.15">
+        <path d="M35 5L65 20L35 35L5 20Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        <path d="M5 30L35 45L65 30" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        <path d="M5 40L35 55L65 40" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      </svg>
+      <!-- Arrow flow -->
+      <svg class="section-doodle sd-exp-arrow" width="120" height="40" viewBox="0 0 120 40" fill="none" aria-hidden="true" data-parallax-speed="0.12">
+        <path d="M10 20H100" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="6 4"/>
+        <path d="M95 12L105 20L95 28" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <!-- Diamond shape -->
+      <svg class="section-doodle sd-exp-diamond" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" data-parallax-speed="-0.22">
+        <path d="M20 4L36 20L20 36L4 20Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      </svg>
+      <!-- Dots cluster -->
+      <svg class="section-doodle sd-exp-dots" width="50" height="50" viewBox="0 0 50 50" fill="none" aria-hidden="true" data-parallax-speed="0.2">
+        <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="30" cy="8" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="45" cy="15" r="3.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="15" cy="35" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="40" cy="40" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+    </section>
+
+    <!-- ========================== -->
+    <!-- PANEL 4: Q&A               -->
+    <!-- ========================== -->
+    <section class="panel panel-light" id="qa">
+      <div class="panel-rounded-top" aria-hidden="true"></div>
+      <div class="container panel-inner">
+        <div class="section-header">
+          <span class="section-label reveal-up">Q&A</span>
+          <h2 class="section-title reveal-up" data-delay="80">
+            Frequently Asked
+            <svg class="doodle-underline-sm" viewBox="0 0 200 12" fill="none"><path d="M2 7C20 2,40 12,60 7C80 2,100 12,120 7C140 2,160 12,180 7C190 4,196 8,198 6" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+          </h2>
+        </div>
+        <div class="qa-list">
+          <div class="qa-item reveal-up">
+            <button class="qa-question" aria-expanded="false">
+              <span>What is your design process?</span>
+              <svg class="qa-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#111" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="qa-answer"><p>My process starts with understanding the problem through user research and stakeholder interviews. Then I move to information architecture, wireframing, and prototyping. After iterating based on feedback, I create high-fidelity designs and collaborate with developers during implementation.</p></div>
+          </div>
+          <div class="qa-item reveal-up" data-delay="60">
+            <button class="qa-question" aria-expanded="false">
+              <span>What tools do you use?</span>
+              <svg class="qa-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#111" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="qa-answer"><p>For UI/UX I primarily use Figma for interface design, prototyping, and design systems. I also use Adobe Creative Suite (Photoshop, Illustrator, After Effects) for graphic design and illustrations. For research, tools like Maze and Hotjar.</p></div>
+          </div>
+          <div class="qa-item reveal-up" data-delay="120">
+            <button class="qa-question" aria-expanded="false">
+              <span>Do you work with development teams?</span>
+              <svg class="qa-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#111" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="qa-answer"><p>Absolutely! Collaboration with developers is a core part of my workflow. I work closely with developers, product managers, and stakeholders to ensure design consistency and deliver scalable solutions. Great products come from seamless design-dev collaboration.</p></div>
+          </div>
+          <div class="qa-item reveal-up" data-delay="180">
+            <button class="qa-question" aria-expanded="false">
+              <span>What types of projects interest you?</span>
+              <svg class="qa-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#111" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="qa-answer"><p>I'm passionate about mobile and web applications, design systems, brand identity, editorial design, and illustration. I'm especially drawn to projects where I can combine visual storytelling with user-centered design to create impactful digital experiences.</p></div>
+          </div>
+          <div class="qa-item reveal-up" data-delay="240">
+            <button class="qa-question" aria-expanded="false">
+              <span>Are you available for freelance or collaboration?</span>
+              <svg class="qa-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#111" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="qa-answer"><p>I'm always open to discussing new opportunities and creative collaborations. Whether it's freelance, full-time, or a creative partnership — reach out through the contact section. I'd love to hear about your project!</p></div>
+          </div>
+        </div>
+      </div>
+      <!-- Section doodle accents: Q&A -->
+      <!-- Chat bubble -->
+      <svg class="section-doodle sd-qa-chat" width="80" height="70" viewBox="0 0 80 70" fill="none" aria-hidden="true" data-parallax-speed="-0.15">
+        <path d="M10 10H60C65 10,70 15,70 20V42C70 47,65 52,60 52H30L18 62V52H10C5 52,0 47,0 42V20C0 15,5 10,10 10Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round" transform="translate(5,2)"/>
+        <line x1="18" y1="24" x2="55" y2="24" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <line x1="18" y1="32" x2="48" y2="32" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <line x1="18" y1="40" x2="38" y2="40" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <!-- Question mark -->
+      <svg class="section-doodle sd-qa-question" width="50" height="70" viewBox="0 0 50 70" fill="none" aria-hidden="true" data-parallax-speed="0.2">
+        <path d="M14 18C14 10,22 4,30 6C38 8,40 16,34 22C30 26,25 28,25 36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="25" cy="48" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+      </svg>
+      <!-- Light bulb -->
+      <svg class="section-doodle sd-qa-bulb" width="50" height="70" viewBox="0 0 50 70" fill="none" aria-hidden="true" data-parallax-speed="-0.18">
+        <path d="M25 6C14 6,8 14,8 24C8 32,14 36,18 42V50H32V42C36 36,42 32,42 24C42 14,36 6,25 6Z" stroke="#D9D9D9" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        <line x1="18" y1="54" x2="32" y2="54" stroke="#D9D9D9" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="20" y1="58" x2="30" y2="58" stroke="#D9D9D9" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Rays -->
+        <line x1="25" y1="0" x2="25" y2="-4" stroke="#D9D9D9" stroke-width="1" stroke-linecap="round" transform="translate(0,4)"/>
+        <line x1="6" y1="12" x2="2" y2="10" stroke="#D9D9D9" stroke-width="1" stroke-linecap="round"/>
+        <line x1="44" y1="12" x2="48" y2="10" stroke="#D9D9D9" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <!-- Cross accent -->
+      <svg class="section-doodle sd-qa-cross" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-parallax-speed="0.25">
+        <path d="M12 4V20M4 12H20" stroke="#D9D9D9" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <!-- Zigzag -->
+      <svg class="section-doodle sd-qa-zigzag" width="120" height="24" viewBox="0 0 120 24" fill="none" aria-hidden="true" data-parallax-speed="-0.1">
+        <path d="M2 20L15 4L30 20L45 4L60 20L75 4L90 20L105 4L118 20" stroke="#D9D9D9" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </section>
+
+    <!-- ========================== -->
+    <!-- PANEL 5: CONTACT + FOOTER  -->
+    <!-- ========================== -->
+    <section class="panel panel-dark" id="contact">
+      <div class="panel-rounded-top dark" aria-hidden="true"></div>
+      <div class="container panel-inner">
+        <div class="section-header">
+          <span class="section-label light reveal-up">GET IN TOUCH</span>
+          <h2 class="section-title light reveal-up" data-delay="80">
+            Let's Work Together
+            <svg class="doodle-underline-sm" viewBox="0 0 240 12" fill="none"><path d="M2 7C30 2,60 12,90 7C120 2,150 12,180 7C210 2,230 8,238 6" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+          </h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p class="body-lg light reveal-up">Have a project in mind? I'd love to hear from you. Let's turn your ideas into reality.</p>
+            <div class="contact-items">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmisirojuddin3@gmail.com" target="_blank" rel="noopener" class="contact-card reveal-up" data-tilt>
+                <div class="contact-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#111" stroke-width="2" fill="none"/><path d="M3 7L12 13L21 7" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div><span class="cc-label">Email</span><span class="cc-value">azmisirojuddin3@gmail.com</span></div>
+              </a>
+              <a href="https://www.linkedin.com/in/azmi-sirojuddin-3ab78a1b9/" target="_blank" rel="noopener" class="contact-card reveal-up" data-delay="60" data-tilt>
+                <div class="contact-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#111" stroke-width="2" fill="none"/><path d="M8 11v5M8 8v.01M12 16v-5c0-1 1-2 2-2s2 1 2 2v5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div><span class="cc-label">LinkedIn</span><span class="cc-value">Azmi Sirojuddin</span></div>
+              </a>
+              <a href="https://maps.google.com/?q=Bandung,+Jawa+Barat,+Indonesia" target="_blank" rel="noopener" class="contact-card reveal-up" data-delay="120" data-tilt>
+                <div class="contact-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z" stroke="#111" stroke-width="2" fill="none"/><circle cx="12" cy="10" r="3" stroke="#111" stroke-width="2" fill="none"/></svg>
+                </div>
+                <div><span class="cc-label">Location</span><span class="cc-value">Bandung, Jawa Barat, Indonesia</span></div>
+              </a>
+            </div>
+          </div>
+          <div class="contact-form-box reveal-up" data-delay="100">
+            <form id="contactForm">
+              <div class="fg"><label for="name">Name</label><input type="text" id="name" placeholder="Your name" required></div>
+              <div class="fg"><label for="email">Email</label><input type="email" id="email" placeholder="your@email.com" required></div>
+              <div class="fg"><label for="message">Message</label><textarea id="message" placeholder="Tell me about your project..." rows="4" required></textarea></div>
+              <button type="submit" class="btn btn-primary btn-lg btn-full">
+                Send Message
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13L2 9Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer-inline">
+          <div class="footer-row">
+            <span class="footer-copy">&copy; 2026 Azmi Sirojuddin</span>
+            <div class="footer-social">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmisirojuddin3@gmail.com" target="_blank" rel="noopener" class="social-btn" aria-label="Email">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/azmi-sirojuddin-3ab78a1b9/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 11v5M8 8v.01M12 16v-5c0-1 1-2 2-2s2 1 2 2v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <!-- Section doodle accents: Contact -->
+      <!-- Paper plane -->
+      <svg class="section-doodle sd-contact-plane" width="70" height="60" viewBox="0 0 70 60" fill="none" aria-hidden="true" data-parallax-speed="0.15">
+        <path d="M5 30L60 5L40 55L30 32Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        <path d="M30 32L60 5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+      <!-- Envelope -->
+      <svg class="section-doodle sd-contact-envelope" width="70" height="50" viewBox="0 0 70 50" fill="none" aria-hidden="true" data-parallax-speed="-0.18">
+        <rect x="5" y="8" width="60" height="36" rx="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M5 12L35 30L65 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      </svg>
+      <!-- Heart -->
+      <svg class="section-doodle sd-contact-heart" width="40" height="38" viewBox="0 0 40 38" fill="none" aria-hidden="true" data-parallax-speed="0.22">
+        <path d="M20 34C12 26,2 20,2 12C2 6,8 2,14 4C18 6,20 10,20 10C20 10,22 6,26 4C32 2,38 6,38 12C38 20,28 26,20 34Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+      <!-- Sparkle -->
+      <svg class="section-doodle sd-contact-sparkle" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true" data-parallax-speed="-0.12">
+        <path d="M14 2L16 11L25 14L16 17L14 26L12 17L3 14L12 11Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      </svg>
+      <!-- Dotted arc -->
+      <svg class="section-doodle sd-contact-arc" width="120" height="60" viewBox="0 0 120 60" fill="none" aria-hidden="true" data-parallax-speed="0.1">
+        <path d="M10 50Q30 5,60 10Q90 15,110 50" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="5 5"/>
+      </svg>
+    </div>
+  </main>
+
+  <!-- GSAP Core & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
