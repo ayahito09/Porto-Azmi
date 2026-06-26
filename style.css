@@ -1376,6 +1376,13 @@ main {
   .contact-grid { grid-template-columns: 1fr; }
 
   .section-dots { right: 16px; }
+
+  .panel {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: 100vh;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 768px) {

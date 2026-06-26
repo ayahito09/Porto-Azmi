@@ -676,6 +676,13 @@
     const startY = isScrollingDown ? '100%' : '-100%';
     const leaveY = isScrollingDown ? '-100%' : '100%';
     
+    // Reset scroll position of the panel depending on transition direction
+    if (isScrollingDown) {
+      newPanel.scrollTop = 0;
+    } else {
+      newPanel.scrollTop = newPanel.scrollHeight - newPanel.clientHeight;
+    }
+
     newPanel.style.setProperty('--translate-x', '0');
     newPanel.style.setProperty('--translate-y', startY);
     void newPanel.offsetWidth; // Force reflow
@@ -712,17 +719,73 @@
 
   window.addEventListener('wheel', (e) => {
     if (isAnimating) return;
+    const activePanel = panels[currentPanelIndex];
+    if (activePanel) {
+      const isScrollable = activePanel.scrollHeight > activePanel.clientHeight;
+      if (isScrollable) {
+        if (e.deltaY > 0) {
+          const isAtBottom = activePanel.scrollTop + activePanel.clientHeight >= activePanel.scrollHeight - 15;
+          if (!isAtBottom) return; // Let panel scroll natively
+        } else if (e.deltaY < 0) {
+          const isAtTop = activePanel.scrollTop <= 15;
+          if (!isAtTop) return; // Let panel scroll natively
+        }
+      }
+    }
     if (e.deltaY > 0) updateActivePanel(currentPanelIndex + 1);
     else if (e.deltaY < 0) updateActivePanel(currentPanelIndex - 1);
   }, { passive: false });
 
   let touchStartY = 0;
-  window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
-  window.addEventListener('touchmove', (e) => { if (isAnimating) e.preventDefault(); }, { passive: false });
+  let wasAtBottomOnTouchStart = false;
+  let wasAtTopOnTouchStart = false;
+
+  window.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+    const activePanel = panels[currentPanelIndex];
+    if (activePanel) {
+      wasAtBottomOnTouchStart = activePanel.scrollTop + activePanel.clientHeight >= activePanel.scrollHeight - 15;
+      wasAtTopOnTouchStart = activePanel.scrollTop <= 15;
+    } else {
+      wasAtBottomOnTouchStart = false;
+      wasAtTopOnTouchStart = false;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (isAnimating) {
+      e.preventDefault();
+      return;
+    }
+    const activePanel = panels[currentPanelIndex];
+    if (activePanel) {
+      const isScrollable = activePanel.scrollHeight > activePanel.clientHeight;
+      if (isScrollable) {
+        // Do not prevent default so native scrolling inside the panel works
+        return;
+      }
+    }
+    // Prevent default body scrolling/bounce effects when not scrolling panel content
+    e.preventDefault();
+  }, { passive: false });
+
   window.addEventListener('touchend', (e) => {
     if (isAnimating) return;
     const diff = touchStartY - e.changedTouches[0].clientY;
     if (Math.abs(diff) > 50) {
+      const activePanel = panels[currentPanelIndex];
+      if (activePanel) {
+        const isScrollable = activePanel.scrollHeight > activePanel.clientHeight;
+        if (isScrollable) {
+          if (diff > 0) { // Swiping up -> scrolling down
+            // Switch panel ONLY if we were ALREADY at the bottom when touch started
+            if (!wasAtBottomOnTouchStart) return;
+          } else { // Swiping down -> scrolling up
+            // Switch panel ONLY if we were ALREADY at the top when touch started
+            if (!wasAtTopOnTouchStart) return;
+          }
+        }
+      }
       if (diff > 0) updateActivePanel(currentPanelIndex + 1);
       else updateActivePanel(currentPanelIndex - 1);
     }
@@ -730,6 +793,19 @@
 
   window.addEventListener('keydown', (e) => {
     if (isAnimating) return;
+    const activePanel = panels[currentPanelIndex];
+    if (activePanel) {
+      const isScrollable = activePanel.scrollHeight > activePanel.clientHeight;
+      if (isScrollable) {
+        if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+          const isAtBottom = activePanel.scrollTop + activePanel.clientHeight >= activePanel.scrollHeight - 15;
+          if (!isAtBottom) return; // Let default browser action scroll down
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          const isAtTop = activePanel.scrollTop <= 15;
+          if (!isAtTop) return; // Let default browser action scroll up
+        }
+      }
+    }
     if (e.key === 'ArrowDown' || e.key === 'PageDown') updateActivePanel(currentPanelIndex + 1);
     else if (e.key === 'ArrowUp' || e.key === 'PageUp') updateActivePanel(currentPanelIndex - 1);
     else if (e.key === 'Home') updateActivePanel(0);
